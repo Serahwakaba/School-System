@@ -1,0 +1,4 @@
+--CREATE DATABASE School;
+--/c School;
+--
+--CREATE TABLE Users
