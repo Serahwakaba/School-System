@@ -1,4 +1,11 @@
 package models;
+import org.sql2o.*;
 
-public class StudentProfile {
+import java.util.List;
+
+public class StudentProfile extends Students  implements Student{
+
+
+    public StudentProfile (String name, int admissionNumber, String email, String units )
+
 }
