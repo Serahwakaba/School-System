@@ -7,7 +7,7 @@ public abstract class Students {
     public String name;
     public int admissionNumber;
     public String units;
-    public int email;
+    public String email;
 
 
     public int getId() {
