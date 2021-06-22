@@ -6,7 +6,7 @@ public interface Student {
 
  //READ   Student
      void findById();
-      void getAll();
+     // void getAll();
 
     //UPDATE Student
     void update(String name, int Id, int admissionNumber, String units, String email);
