@@ -19,12 +19,12 @@ public  class StudentProfile extends Students  implements Student{
 
     public void save() {
         try(Connection conn = Database.sql2o.open()) {
-            String save="INSERT INTO animals (name,rangerid,age,health) VALUES (:name, :rangerId,:age,:health)";
+            String save="INSERT INTO animals (name,id,admissionNumber,email) VALUES (:name, :id,:admissionNumber,:email)";
             this.id = (int) conn.createQuery(save, true)
                     .addParameter("name", this.name)
-                    .addParameter("rangerId",this.rangerId)
-                    .addParameter("age",this.age)
-                    .addParameter("health",this.health)
+                    .addParameter("id",this.id)
+                    .addParameter("admissionNumber",this.admissionNumber)
+                    .addParameter("email",this.email)
                     .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
@@ -74,7 +74,7 @@ public  class StudentProfile extends Students  implements Student{
         try(Connection conn=Database.sql2o.open())
         {
 
-            String updateNewBorn = "UPDATE animals SET name=:name, rangerid=:rangerId,age=:age, health=:health WHERE id = :id";
+            String updateNewBorn = "UPDATE animals SET name=:name, id=:Id,admissionNumber=:admissionNumber, email=:email WHERE id = :id";
             conn.createQuery(updateNewBorn)
                     .addParameter("name", name)
                     .addParameter("Id",Id)
