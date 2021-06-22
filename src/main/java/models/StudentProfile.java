@@ -74,10 +74,17 @@ public class StudentProfile extends Students  implements Student{
 
 
 
-    @Override
     public void removeById() {
-
+        try(Connection conn=Database.sql2o.open())
+        {
+            String remove = "DELETE FROM students WHERE id = :id";
+            conn.createQuery(remove)
+                    .addParameter("id", this.id)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate();
+        }
     }
+
 
     @Override
     public void removeAll() {
