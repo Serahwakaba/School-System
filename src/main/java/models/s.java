@@ -1,9 +1,16 @@
 package models;
-import org.sql2o.*;
-
-import java.util.List;
 
 import java.sql.Connection;
+import java.util.List;
+
+public class s {
+}
+package models;
+        import org.sql2o.*;
+
+        import java.util.List;
+
+        import java.sql.Connection;
 
 public  class StudentProfile extends Students  implements Student{
 
@@ -31,32 +38,18 @@ public  class StudentProfile extends Students  implements Student{
         }
     }
 
-    @Override
-    public void findById() {
-
-    }
 
 
     public static StudentProfile findById(int id) {
-            try(Connection conn = Database.sql2o.open()) {
-                String sql = "SELECT * FROM students where id=:id";
-                StudentProfile student = conn.createQuery(sql)
-                        .addParameter("id", id)
-                        .throwOnMappingFailure(false)
-                        .executeAndFetchFirst(StudentProfile.class);
-                return student;
-            }
-
-    }
-    @Override
-    public boolean equals(Object otherStudent){
-        if (!(otherStudent instanceof StudentProfile)) {
-            return false;
-        } else {
-            StudentProfile newAnimal = (StudentProfile) otherStudent;
-            return this.getName().equals(newAnimal.getName()) &&
-                    this.getId() == newAnimal.getId();
+        try(Connection conn = Database.sql2o.open()) {
+            String sql = "SELECT * FROM students where id=:id";
+            StudentProfile student = conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(StudentProfile.class);
+            return student;
         }
+
     }
 
     public static List<StudentProfile> getAll() {
