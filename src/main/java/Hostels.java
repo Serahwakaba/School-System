@@ -2,7 +2,7 @@ import org.sql2o.*;
 
 import java.util.List;
 
-public class Sighting{
+public class Hostels{
     private String username;
     private String firstName;
     private String password;
