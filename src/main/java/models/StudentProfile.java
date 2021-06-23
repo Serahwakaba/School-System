@@ -1,6 +1,7 @@
 package models;
 import org.sql2o.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import java.sql.Connection;
@@ -18,7 +19,7 @@ public  class StudentProfile extends Students  implements Student{
 
 
     public void save() {
-        try(Connection conn = Database.sql2o.open()) {
+        try(Connection conn = (Connection) Database.sql2o.open()) {
             String save="INSERT INTO animals (name,id,admissionNumber,email) VALUES (:name, :id,:admissionNumber,:email)";
             this.id = (int) conn.createQuery(save, true)
                     .addParameter("name", this.name)
@@ -28,6 +29,8 @@ public  class StudentProfile extends Students  implements Student{
                     .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
@@ -38,14 +41,16 @@ public  class StudentProfile extends Students  implements Student{
 
 
     public static StudentProfile findById(int id) {
-            try(Connection conn = Database.sql2o.open()) {
-                String sql = "SELECT * FROM students where id=:id";
-                StudentProfile student = conn.createQuery(sql)
-                        .addParameter("id", id)
-                        .throwOnMappingFailure(false)
-                        .executeAndFetchFirst(StudentProfile.class);
-                return student;
-            }
+        try (Connection conn = (Connection) Database.sql2o.open()) {
+            String sql = "SELECT * FROM students where id=:id";
+            StudentProfile student = conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(StudentProfile.class);
+            return student;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
     @Override

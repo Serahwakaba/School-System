@@ -27,7 +27,7 @@ class StudentProfileTest {
     @Test
     public void equals_returnsTrueIfNameAndStudentIddAreSame_true() {
         StudentProfile testStudent = createStudent();
-        StudentProfile AnotherStudent = createStudent();
+        StudentProfile anotherStudent = createStudent();
         assertTrue(testStudent.equals(anotherStudent));
     }
     @Test
@@ -47,7 +47,7 @@ class StudentProfileTest {
 
     @Test
     public void getAll_returnsAllInstancesOfStudent() {
-        StudentProfile testStudent = createStudent();
+        StudentProfile firstStudent = createStudent();
         firstStudent.save();
         StudentProfile secondStudent = createSecondStudent();
         secondStudent.save();
