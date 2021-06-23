@@ -11,7 +11,7 @@ public class Student{
     private String course;
     private String units;
 
-    public Animal(String firstName, String secondName, String gmail, String regNumber, int id, String course, String units) {
+    public Student(String firstName, String secondName, String gmail, String regNumber, int id, String course, String units) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.gmail = gmail;

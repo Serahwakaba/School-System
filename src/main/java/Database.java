@@ -5,10 +5,10 @@ import java.net.URISyntaxException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-public class DB { 
+public class Database {
     private static URI dbUri;
     public static Sql2o sql2o = new Sql2o("jdbc:postgresql://localhost:5432/school_system", "moringa", "password");
-    static Logger logger = LoggerFactory.getLogger(DB.class);
+    static Logger logger = LoggerFactory.getLogger(Database.class);
     static {
     
         try {

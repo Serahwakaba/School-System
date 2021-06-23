@@ -5,14 +5,17 @@ import java.util.List;
 public class Hostels{
     private String username;
     private String firstName;
+    private String studentId;
     private String password;
     private String email;
     private int id;
 
-    public Sighting(String username, String firstName, String password, String email, int id) {
+    public Hostels(String username, String studentId, String firstName, String password, String email, int id) {
         this.username = username;
         this.firstName = firstName;
         this.password = password;
+        this.studentId = studentId;
+
         this.email = email;
         this.id = id;
     }
@@ -56,13 +59,13 @@ public class Hostels{
     public void setId(int id) {
         this.id = id;
     }
+
     public void save() {
-        try(Connection con = DB.sql2o.open()) {
-           String sql = "INSERT INTO hostels (username, first_name, hostel_id,password,email) VALUES (:username, :first_name, :hostel_id, password,email,now())";
+        try(Connection con = Database.sql2o.open()) {
+           String sql = "INSERT INTO hostels (username, first_name, studentId,password,email) VALUES (:username, :first_name, :hostel_id, password,email,now())";
            this.id = (int) con.createQuery(sql, true)
+                   .addParameter("studentId", this.studentId)
            .addParameter("username", this.username)
-           .addParameter("first_name", this.first_name)
-           .addParameter("hostel_id", this.hostel_id)
            .addParameter("password", this.password)
            .addParameter("email", this.email)
            .executeUpdate()
@@ -70,13 +73,25 @@ public class Hostels{
         }
      }
      
-     public static List<Sighting> all() {
+     public static List<Hostels> all() {
         String sql = "select * from hostels";
-        try(Connection con = DB.sql2o.open()) {
+        try(Connection con = Database.sql2o.open()) {
            return con.createQuery(sql)
            .executeAndFetch(Hostels.class);
         }
      }
+    public static Hostels findById(int id)
+    {
+        try (Connection conn =Database.sql2o.open())
+        {
+            String getById = "SELECT * FROM sightings WHERE id = :id";
+            Hostels hostel=conn.createQuery(getById)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(Hostels.class);
+            return hostel;
+        }
+    }
 
 
 }
