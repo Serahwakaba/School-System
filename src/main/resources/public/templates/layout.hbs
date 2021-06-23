@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{#block "title"}}School-system{{/block}}</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="color">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/student/new">student</a></li>
+        <li role="presentation"><a href="/student/list">hostel</a></li>
+    </ul>
+    <div class="container">
+        <!--begin main template-->
+        <div class="page-header">
+            <h1>WELCOME TO SCHOOL-MANAGEMENT-SYSTEM</h1>
+        </div>
+        <div class="col-md-12">
+            {{#block "content"}}
+            {{/block}}
+        </div>
+    </div>
+</div>
+<!--end main template-->
+{{#block "footer"}}
+    </body>
+    </html>
+{{/block}}
