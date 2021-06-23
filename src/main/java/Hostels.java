@@ -84,7 +84,7 @@ public class Hostels{
     {
         try (Connection conn =Database.sql2o.open())
         {
-            String getById = "SELECT * FROM sightings WHERE id = :id";
+            String getById = "SELECT * FROM hostels WHERE id = :id";
             Hostels hostel=conn.createQuery(getById)
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
@@ -92,6 +92,18 @@ public class Hostels{
             return hostel;
         }
     }
+    public void update(int hostelId, String name, String location)
+    {
+        try (Connection conn = Database.sql2o.open()){
+            String sql = "UPDATE hostels SET hostelid=:hostelId, location=:location,name=:name WHERE id=:id";
+            conn.createQuery(sql)
+                    .addParameter("hostelId", hostelId)
+                    .addParameter("location", location)
+                    .addParameter("name", name)
+                    .addParameter("id",this.id)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate();
 
+        }
+    }
 
-}
