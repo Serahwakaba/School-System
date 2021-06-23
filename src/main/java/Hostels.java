@@ -56,6 +56,27 @@ public class Hostels{
     public void setId(int id) {
         this.id = id;
     }
+    public void save() {
+        try(Connection con = DB.sql2o.open()) {
+           String sql = "INSERT INTO hostels (username, first_name, hostel_id,password,email) VALUES (:username, :first_name, :hostel_id, password,email,now())";
+           this.id = (int) con.createQuery(sql, true)
+           .addParameter("username", this.username)
+           .addParameter("first_name", this.first_name)
+           .addParameter("hostel_id", this.hostel_id)
+           .addParameter("password", this.password)
+           .addParameter("email", this.email)
+           .executeUpdate()
+           .getKey();
+        }
+     }
+     
+     public static List<Sighting> all() {
+        String sql = "select * from hostels";
+        try(Connection con = DB.sql2o.open()) {
+           return con.createQuery(sql)
+           .executeAndFetch(Hostels.class);
+        }
+     }
 
 
 }
