@@ -2,13 +2,21 @@ package models;
 
 import java.util.Objects;
 
-public abstract class Students {
-    public int id;
-    public String name;
-    public int admissionNumber;
-    public String units;
-    public String email;
+public class Students {
+    private int id;
+    private String name;
+    private String phone;
+    private int roomNumber;
+    private int floor;
+    private int apartmentId;
 
+    public Students(String name, String phone, int roomNumber, int floor, int apartmentId) {
+        this.name = name;
+        this.phone = phone;
+        this.roomNumber = roomNumber;
+        this.floor = floor;
+        this.apartmentId=apartmentId;
+    }
 
     public int getId() {
         return id;
@@ -26,28 +34,36 @@ public abstract class Students {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public int getAdmissionNumber() {
-        return admissionNumber;
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setAdmissionNumber(int admissionNumber) {
-        this.admissionNumber = admissionNumber;
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
-    public String getUnits() {
-        return units;
+    public int getFloor() {
+        return floor;
     }
 
-    public void setUnits(String units) {
-        this.units = units;
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public int getApartmentId() {
+        return apartmentId;
+    }
+
+    public void setApartmentId(int apartmentId) {
+        this.apartmentId = apartmentId;
     }
 
     @Override
@@ -55,13 +71,15 @@ public abstract class Students {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Students students = (Students) o;
-        return id == students.id && email == students.email && admissionNumber == students.admissionNumber && Objects.equals(name, students.name) && Objects.equals(units, students.units);
+        return roomNumber == students.roomNumber &&
+                floor == students.floor &&
+                apartmentId==students.apartmentId &&
+                Objects.equals(name, students.name) &&
+                Objects.equals(phone, students.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, admissionNumber, units);
+        return Objects.hash(name, phone, roomNumber, floor, apartmentId);
     }
-
-
 }
