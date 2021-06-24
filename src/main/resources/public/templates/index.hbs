@@ -1,0 +1,23 @@
+{{#partial "content"}}
+
+    <h1>WELCOME TO SCHOOL-MANAGEMENT-SYSTEM</h1>
+    <br><br>
+    {{#if student}}
+        {{#each student}}
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title">STUDENT {{name}}</h5>
+                    <p>student: {{studentName}}</p>
+                    <p>cont: {{studentContact}}</p>
+                    <p>room: {{hostelRoom}}</p>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No student has been admitted.</p>
+        <h4>Admit students</h4>
+    {{/if}}
+
+
+{{/partial}}
+{{>layout.hbs}}
