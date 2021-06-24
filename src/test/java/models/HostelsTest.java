@@ -108,11 +108,11 @@ class HostelsTest {
 
     public Hostels createHostel()
     {
-        return new Hostels(1,"56677","James");
+        return new Hostels(1,3,"James", "east","23");
     }
     public Hostels createSecondHostel()
     {
-        return new Hostels(1,"Zone A", "Mark");
+        return new Hostels(1,2, "west","lion","34");
     }
 
 }
